@@ -1,0 +1,2 @@
+update ABCDPRODDB.t_pc_bank_raw_profile set vuaId = '7302555101@onemoney' where tracking_id = 17448 and consent_id = '416d75d3-6254-41be-bb78-756efd636b12';
+update ABCDPRODDB.t_pc_bank_raw_profile set vuaId = '8976237250@onemoney' where tracking_id = 17480 and consent_id = '1d261110-3a64-4478-8308-de5b56972253';
