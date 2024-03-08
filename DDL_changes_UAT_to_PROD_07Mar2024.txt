@@ -1,0 +1,93 @@
+CREATE TABLE t_fd_api_status (
+  fd_api_status_id bigint NOT NULL AUTO_INCREMENT,
+  customer_id bigint NOT NULL,
+  api_name varchar(100) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  request mediumtext,
+  response mediumtext,
+  api_start_time datetime(6) DEFAULT NULL,
+  api_end_time datetime(6) DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
+  created_by varchar(45) DEFAULT NULL,
+  created_date datetime(6) DEFAULT NULL,
+  modified_by varchar(45) DEFAULT NULL,
+  modified_date datetime(6) DEFAULT NULL,
+  PRIMARY KEY (fd_api_status_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE t_fd_details (
+  fixed_deposit_id bigint NOT NULL AUTO_INCREMENT,
+  customer_id bigint NOT NULL,
+  mobile_number varchar(20) DEFAULT NULL,
+  pan_number varchar(10) DEFAULT NULL,
+  account_number varchar(10) DEFAULT NULL,
+  bank_code varchar(60) DEFAULT NULL,
+  bank_name varchar(200) DEFAULT NULL,
+  ifsc_code varchar(60) DEFAULT NULL,
+  deposit_amount double DEFAULT NULL,
+  return_amount double DEFAULT NULL,
+  interest float DEFAULT NULL,
+  tenure varchar(10) DEFAULT NULL,
+  gender varchar(1) DEFAULT NULL,
+  senior_citizen bit(1) DEFAULT NULL,
+  maturity_date datetime(6) DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
+  created_by varchar(100) DEFAULT NULL,
+  created_date datetime(6) DEFAULT NULL,
+  modified_by varchar(100) DEFAULT NULL,
+  modified_date datetime(6) DEFAULT NULL,
+  PRIMARY KEY (fixed_deposit_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE t_fd_networth (
+  fixed_deposit_networth_id bigint NOT NULL AUTO_INCREMENT,
+  customer_id bigint NOT NULL,
+  total_invested_amount double DEFAULT NULL,
+  total_invested_currency varchar(5) DEFAULT NULL,
+  total_interested_amount double DEFAULT NULL,
+  total_interested_currency varchar(5) DEFAULT NULL,
+  current_amount double DEFAULT NULL,
+  current_currency varchar(5) DEFAULT NULL,
+  active_fixed_deposit_count int DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
+  created_by varchar(100) DEFAULT NULL,
+  created_date datetime(6) DEFAULT NULL,
+  modified_by varchar(100) DEFAULT NULL,
+  modified_date datetime(6) DEFAULT NULL,
+  PRIMARY KEY (fixed_deposit_networth_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+create index ix_mf_api_status_apiendtime on t_mf_api_status (api_end_time);
+create index ix_fundname on t_mf_funds (fund_name);
+
+alter table t_mf_lead_details add 
+(
+amount double DEFAULT NULL;
+emp_referral_id varchar(45) DEFAULT NULL,
+emp_referal_name varchar(45) DEFAULT NULL,
+emp_referral_phone varchar(45) DEFAULT NULL,
+emp_referral_email varchar(45) DEFAULT NULL,
+modified_date datetime(6) DEFAULT NULL
+);
+
+create index idx_partner_nomineeid on t_mf_nominee_details (partner_nominee_id);
+create index ix_paymentid on t_mf_purchase (payment_id,partner_purchase_id_old);
+
+alter table t_mf_purchase_payment_details add column customer_id bigint DEFAULT NULL COMMENT 'Foreign key from t_customer';
+create index ix_mf_purchase_customer_id on t_mf_purchase_payment_details(customer_id);
+alter table t_mf_purchase_payment_details ADD FOREIGN KEY fk_mf_purchase_customer_id (customer_id) REFERENCES t_customer (id);
+
+
+alter table t_mf_sip_mandate_details add 
+(
+mandate_valid_to datetime DEFAULT NULL COMMENT 'Mandate Validity (Default value valid_from date + 30 years)',
+customer_id bigint DEFAULT NULL COMMENT 'Foreign key from t_customer',
+partner_bank_id varchar(10) DEFAULT NULL COMMENT 'To hold the bank account id(old)',
+);
+
+create index ix_custid_mfsif on t_mf_sip_mandate_details (customer_id);
+alter table t_mf_sip_mandate_details add foreign key fk_custid_mfsif FOREIGN KEY (customer_id) REFERENCES t_customer (id);
+
+alter table t_mf_switches add column (plan varchar(45) DEFAULT NULL COMMENT 'The id of the plan with which this switch is associated.');
