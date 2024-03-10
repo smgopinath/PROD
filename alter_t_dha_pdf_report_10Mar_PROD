@@ -1,0 +1,2 @@
+alter table t_dha_pdf_report add column (pubsub_message_id varchar(45) comment 'To store the PDF in GCP storage',
+ pdf_gcs_file_path varchar(1500) comment 'To store the PDF URL from GCP storage');
