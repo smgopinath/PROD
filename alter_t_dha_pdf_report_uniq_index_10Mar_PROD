@@ -1,0 +1,18 @@
+#To create table backup:
+create table t_dha_pdf_report_backup_10Mar2024 like t_dha_pdf_report;
+
+#Copy all rows from t_dha_pdf_report
+insert into t_dha_pdf_report_backup_10Mar2024 select * from t_dha_pdf_report;
+
+#To find the duplicate rows in the table:
+SELECT customer_id,scan_id, count(*) no_of_records
+FROM t_dha_pdf_report
+GROUP BY  customer_id,scan_id
+HAVING count(*) > 1;
+
+#Delete the duplicate rows from t_dha_pdf_report
+
+#Drop the existing index ix_scanid from the table t_dha_pdf_report
+
+#Create unique index on scan_id
+CREATE UNIQUE INDEX ix_scanid ON t_dha_pdf_report(scan_id);
