@@ -1,13 +1,16 @@
-INSERT INTO t_lob_master (id, lob, desc, active) VALUES ('28', 'Home', 'Home (Landing Page)', b'1');
-
 INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, is_active, updated_at, updated_by) VALUES ('31', 'UPI',  'Consent to T&C',	                    'I agree with Terms and Conditions and Privacy Policy',	               sysdate(), 'system', '1', sysdate(), 'system');
 INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, is_active, updated_at, updated_by) VALUES ('32', 'UPI',  'Consent to WhatsApp',                'I agree to be contacted by ABCDL over WhatsApp',	                   sysdate(), 'system', '1', sysdate(), 'system');
 INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, is_active, updated_at, updated_by) VALUES ('33', 'PC',   'Consent to fetch data from Equifax', 'I consent ABCD to fetch my personal details from Equifax.',	       sysdate(), 'system', '1', sysdate(), 'system');
 INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, is_active, updated_at, updated_by) VALUES ('34', 'Home', 'Master T&C',                         'Master T&C. I agree with terms and conditions and privacy policy',    sysdate(), 'system', '1', sysdate(), 'system');
 INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, is_active, updated_at, updated_by) VALUES ('35', 'Home', 'Whatsapp Communication',             'Whatsapp Communication. I agree to being reached out to on WhatsApp', sysdate(), 'system', '1', sysdate(), 'system');
 
+INSERT INTO t_lob_master (id, lob, desc, active) VALUES VALUES ('26', 'LISTP', 'Salaried Term Plan' , b'1');
+INSERT INTO t_lob_master (id, lob, desc, active) VALUES VALUES ('27', 'Credit Card', 'Credit Card'	, b'1');
+INSERT INTO t_lob_master (id, lob, desc, active) VALUES VALUES ('28', 'Home', 'Home (Landing Page)', b'1');
 
-
+##########IGNORE###########
+#INSERT INTO t_lob_master (id, lob, desc, active) VALUES ('28', 'Home', 'Home (Landing Page)', b'1');
 #INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, is_active, updated_at, updated_by) VALUES ('33', 'PC','Consent to fetch data from Equifax', 'I consent ABCD to fetch my personal details from Equifax.',	sysdate(), 'system', '1', sysdate(), 'system');
 #INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, is_active, updated_at, updated_by) VALUES ('34', 'Home', 'Master T&C', 'Master T&C. I agree with terms and conditions and privacy policy', sysdate(), 'system', '1', sysdate(), 'system');
 #INSERT INTO t_consent_master (id, lob_id, consent_name, consent_description, created_at, created_by, updated_at, updated_by) VALUES ('35', 'Home', 'Whatsapp Communication', 'Whatsapp Communication. I agree to being reached out to on WhatsApp', sysdate(), 'system', sysdate(), 'system');
+##########IGNORE###########
