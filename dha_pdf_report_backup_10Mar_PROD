@@ -1,0 +1,2 @@
+create table t_dha_pdf_report_backup_10Mar2024 like t_dha_pdf_report;
+insert into t_dha_pdf_report_backup_10Mar2024 select * from t_dha_pdf_report;
