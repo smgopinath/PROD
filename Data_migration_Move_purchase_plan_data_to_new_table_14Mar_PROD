@@ -1,0 +1,28 @@
+#########################BACKUP################################
+
+create table t_mf_purchase_plan_details_backup_14mar like t_mf_purchase_plan_details;
+insert into t_mf_purchase_plan_details_backup_14mar select * from t_mf_purchase_plan_details;
+select count(*) from t_mf_purchase_plan_details; #Total row count in original table
+select count(*) from t_mf_purchase_plan_details_backup_14mar; #Total row count in backup table
+
+#########################Deployment################################
+#   Run the below statement only if the row count in t_mf_purchase_plan_details & t_mf_purchase_plan_details_backup_14mar are matching
+###################################################################
+insert into t_mf_purchase_plan_details (customer_id,source_ref_id,partner_purchase_plan_id,
+partner_investment_account_id,start_date,end_date,number_of_installments,next_installment_date,
+previous_installment_date,remaining_inst,folio_no,state,invest_amount,scheme_isin,initated_by,
+initated_via,purchase_reason,euin,gateway,payment_mandate_id,partner_id,systematic,frequency,
+auto_generate_installments,installment_day,payment_method,purpose,plan_created_at,plan_activated_at,
+plan_cancelled_at,plan_completed_at,plan_failed_at,cancellation_scheduled_on,reason,
+requested_activation_date,purchase_consent,purchase_consent_date,created_date,modified_date,created_by,modified_by)
+(select mf.customer_id, mf.source_ref_id,
+mf.partner_purchase_plan_id,mf.partner_investment_account_id,mf.start_date,end_date,
+mf.number_of_installments,mf.next_installment_date,mf.previous_installment_date,mf.remaining_inst,
+folio_no,state,invest_amount,scheme_isin,initated_by,initated_via,reason,
+euin,gateway,emandate_id,partner_id,systematic,frequency,auto_generate_installments,
+installment_day,payment_method,purpose,purchase_created_at,activated_at,cancelled_at,
+completed_at,purchase_failed_at,cancellation_scheduled_on,reason,requested_activation_date,
+purchase_consent,purchase_consent_date,created_date,modified_date,created_by,modified_by
+from t_mf_purchase mf
+where mf.partner_purchase_plan_id is not null
+order by mf.mf_purchase_id);
