@@ -1,0 +1,7 @@
+ALTER TABLE t_app_permissions 
+ADD COLUMN whatsapp VARCHAR(1) NULL AFTER device_os,
+ADD COLUMN general_notifications VARCHAR(1) NULL AFTER whatsapp,
+ADD COLUMN storage VARCHAR(1) NULL AFTER general_notifications,
+ADD COLUMN call VARCHAR(1) NULL AFTER storage,
+ADD COLUMN display_over_otherapps VARCHAR(1) NULL AFTER call,
+CHANGE COLUMN device_os device_os VARCHAR(45) NULL DEFAULT NULL COMMENT 'Device OS' AFTER auth_method;
