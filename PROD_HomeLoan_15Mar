@@ -1,0 +1,106 @@
+DB SCRIPTS
+============
+1. t_homeloan_tcs_api_audit - - Add New TABLE
+
+CREATE TABLE `t_homeloan_tcs_api_audit` (
+  `hl_tcsapi_id` bigint NOT NULL AUTO_INCREMENT,
+  `customer_id` bigint DEFAULT NULL,
+  `lob_id` bigint DEFAULT NULL,
+  `application_number` varchar(45) DEFAULT NULL,
+  `pannumber` varchar(15) DEFAULT NULL,
+  `tcs_application_form_no` varchar(45) DEFAULT NULL,
+  `credit_score` int DEFAULT NULL,
+  `eligible_for_loan` bit(1) DEFAULT NULL,
+  `credit_score_last_fetched_date` datetime DEFAULT NULL,
+  `ramp_api_success` bit(1) DEFAULT NULL,
+  `fraud_user` bit(1) DEFAULT NULL,
+  `lead_api_success` bit(1) DEFAULT NULL,
+  `lead_status_api_success` bit(1) DEFAULT NULL,
+  `tcs_diy_api_success` bit(1) DEFAULT NULL,
+  `tcs_log_api_success` bit(1) DEFAULT NULL,
+  `tcs_dms_api_success` bit(1) DEFAULT NULL,
+  `comp_journey_api_success` bit(1) DEFAULT NULL,
+  `active` bit(1) DEFAULT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `created_by` varchar(45) DEFAULT NULL,
+  `modified_date` datetime(6) DEFAULT NULL,
+  `modified_by` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`hl_tcsapi_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='table used to  track if  TCS apis are sucessful or not.';
+
+
+
+2. t_homeloan_loanoffer - Add New columns
+
+ALTER TABLE `t_homeloan_loanoffer`
+ADD COLUMN `lms_lead_id` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Lead id created by LMS api' AFTER `final_loan_amount`,
+ADD COLUMN `application_no` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Unique Application no' AFTER `lms_lead_id`; 
+
+3. t_homeloan_customer - Add New columns
+
+ALTER TABLE `t_homeloan_customer`
+ADD COLUMN `name` VARCHAR(45) NULL DEFAULT NULL COMMENT 'User full name' AFTER `lobid`;
+
+
+4. t_occupation_type - Insert new occupation types for HomeLoan
+ 
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Salaried',NULL,3,NULL,'Salaried','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Architect',NULL,3,NULL,'Architect','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('CA',NULL,3,NULL,'CA','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('CS',NULL,3,NULL,'CS','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Doctor',NULL,3,NULL,'Doctor','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Engineer',NULL,3,NULL,'Engineer','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('ICWA',NULL,3,NULL,'ICWA','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Lawyer',NULL,3,NULL,'Lawyer','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Partner',NULL,3,NULL,'Partner','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Director',NULL,3,NULL,'Director','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Proprietor',NULL,3,NULL,'Proprietor','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `t_occupation_type` (`occupationtype`,`state`,`lob_id`,`occupationcode`,`display_name`,`active`,`createdby`,`createddate`,`modifiedby`,`modifieddate`) VALUES ('Others',NULL,3,NULL,'Others','Y',NULL,NULL,NULL,NULL);
+
+
+5. t_homeloan_employment_dtl - Add New columns
+
+ALTER TABLE `ABCDDEVDB`.`t_homeloan_employment_dtl`
+ADD COLUMN `company_id` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Company name Id' AFTER `occupation_type`,
+ADD COLUMN `company_code` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Company code' AFTER `company_id`,
+ADD COLUMN `company_category` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Company category' AFTER `company_code`,
+ADD COLUMN `rec_status` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Company rec status' AFTER `company_category`,
+ADD COLUMN `industry_id` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Company industry id' AFTER `rec_status`,
+ADD COLUMN `sub_industry_id` VARCHAR(45) NULL DEFAULT NULL COMMENT 'Company sub industry id' AFTER `industry_id`;
+
+
+
+
+
+
+REVERT SCRIPTS
+===============
+1. DROP TABLE - t_homeloan_tcs_api_audit
+
+DROP TABLE `ABCDDEVDB`.`t_homeloan_tcs_api_audit`;
+
+
+2. DROP COLUMNS - In t_homeloan_loanoffer
+
+ALTER TABLE `ABCDDEVDB`.`t_homeloan_loanoffer` 
+DROP COLUMN `application_no`,
+DROP COLUMN `lms_lead_id`;
+
+3. DROP COLUMNS - In t_homeloan_customer
+
+ALTER TABLE `ABCDDEVDB`.`t_homeloan_customer` 
+DROP COLUMN `name`;
+
+4. t_occupation_type - Delete Records
+DELETE FROM `ABCDDEVDB`.`t_occupation_type` WHERE (`lob_id` = '3');
+
+
+5. DROP COLUMNS - In t_homeloan_employment_dtl
+
+ALTER TABLE `ABCDDEVDB`.`t_homeloan_employment_dtl` 
+DROP COLUMN `company_id`,
+DROP COLUMN `company_code`,
+DROP COLUMN `company_category`,
+DROP COLUMN `rec_status`,
+DROP COLUMN `industry_id`,
+DROP COLUMN `sub_industry_id`;
