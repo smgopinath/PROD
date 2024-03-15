@@ -1,0 +1,10 @@
+ALTER TABLE t_pc_bank_raw_profile drop column is_data_fetched;
+
+DROP TABLE t_pc_batch_status;
+
+DROP TABLE t_pc_batch_error_details;
+
+DROP TABLE t_vas_credit_error_details;
+ 
+DROP TABLE t_vas_credit_batch_status;
+
