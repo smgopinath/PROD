@@ -1,0 +1,79 @@
+ALTER TABLE t_pc_bank_raw_profile ADD column is_data_fetched bit(1);
+
+
+
+CREATE TABLE `t_pc_batch_error_details` (
+  `batch_error_detail_id` bigint NOT NULL AUTO_INCREMENT,
+  `exception_message` varchar(650) DEFAULT NULL COMMENT 'Exception Message',
+  `tracking_id` bigint DEFAULT NULL COMMENT 'Customer id',
+  `consent_id` varchar(100) DEFAULT NULL COMMENT 'Reference Id from pirimid',
+  `error_journey` varchar(50) DEFAULT NULL COMMENT 'Journey where exception happened',
+  `active` bit(1) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL COMMENT 'Created date',
+  `created_by` varchar(50) DEFAULT NULL COMMENT 'Created  By',
+  `modified_on` datetime DEFAULT NULL COMMENT 'Last Madified date',
+  `modified_by` varchar(50) DEFAULT NULL COMMENT 'Last Modified by',
+  PRIMARY KEY (`batch_error_detail_id`),
+  KEY `fk_tracking_id` (`tracking_id`),
+  CONSTRAINT `fk_tracking_id` FOREIGN KEY (`tracking_id`) REFERENCES `t_customer` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3503 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `t_pc_batch_status` (
+  `batch_status_id` bigint NOT NULL AUTO_INCREMENT,
+  `batch_name` varchar(100) DEFAULT NULL COMMENT 'Name of the scheduler',
+  `batch_type` varchar(40) DEFAULT NULL COMMENT 'Scheduler Type, hourly or weekly',
+  `batch_start_time` datetime DEFAULT NULL COMMENT 'Scheduler Start time',
+  `batch_end_time` datetime DEFAULT NULL COMMENT 'Scheduler End Time',
+  `no_of_records_processed` bigint DEFAULT NULL COMMENT 'Numner of records to be processed in the scheduler',
+  `no_of_records_success` bigint DEFAULT NULL COMMENT 'Number of successfully processed records',
+  `no_of_records_failed` bigint DEFAULT NULL COMMENT 'Number of failed records',
+  `batch_status` varchar(20) DEFAULT NULL COMMENT 'Scheduler current status',
+  `active` bit(1) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL COMMENT 'Created date',
+  `created_by` varchar(50) DEFAULT NULL COMMENT 'Created  By',
+  `modified_on` datetime DEFAULT NULL COMMENT 'Last Madified date',
+  `modified_by` varchar(50) DEFAULT NULL COMMENT 'Last Modified by',
+  PRIMARY KEY (`batch_status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
+CREATE TABLE `t_vas_credit_error_details` (
+  `batch_error_detail_id` bigint NOT NULL AUTO_INCREMENT COMMENT 'Primary Key Auto Increment',
+  `exception_message` varchar(650) DEFAULT NULL COMMENT 'Error Message',
+  `tracking_id` bigint DEFAULT NULL COMMENT 'Foreign Key From t_Customer	Customer Id',
+  `pancard` varchar(20) DEFAULT NULL COMMENT 'pancard',
+  `mobile` varchar(10) DEFAULT NULL COMMENT 'Mobile Number',
+  `name` varchar(100) DEFAULT NULL COMMENT 'User Name',
+  `active` bit(1) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `created_on` datetime DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `created_by` varchar(50) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `modified_on` datetime DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `modified_by` varchar(50) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  PRIMARY KEY (`batch_error_detail_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=632 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `t_vas_credit_batch_status` (
+  `batch_name` varchar(100) DEFAULT NULL COMMENT 'Scheduler Name',
+  `batch_type` varchar(40) DEFAULT NULL COMMENT 'Scheduler Type',
+  `batch_start_time` datetime(6) DEFAULT NULL COMMENT 'Scheduler Start Time',
+  `batch_end_time` datetime(6) DEFAULT NULL COMMENT 'Scheduler End Time',
+  `no_of_records_processed` bigint DEFAULT NULL COMMENT 'Number of Users to be run in scheduler',
+  `no_of_records_success` bigint DEFAULT NULL COMMENT 'Number of credit score scores Sucessfully fetched from Equifax /Finarkin',
+  `no_of_records_failed` bigint DEFAULT NULL COMMENT 'Number of credit score scores not Sucessfully fetched from Equifax /Finarkin',
+  `batch_status` varchar(20) DEFAULT NULL COMMENT 'Batch Status',
+  `active` bit(1) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `created_on` datetime(6) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `created_by` varchar(50) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `modified_on` datetime(6) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `modified_by` varchar(50) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  `batch_status_id` bigint NOT NULL AUTO_INCREMENT,
+  `modified_date` datetime(6) DEFAULT NULL COMMENT 'Audit Columns used for traceability',
+  PRIMARY KEY (`batch_status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
