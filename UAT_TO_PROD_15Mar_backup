@@ -1,0 +1,44 @@
+create table t_lob_master_backup_15Mar2024                       like t_lob_master;    
+create table t_product_plan_master_backup_15Mar2024              like t_product_plan_master; 
+create table t_hi_addons_ratemaster_backup_15Mar2024             like t_hi_addons_ratemaster;
+create table t_hi_activ_one_max_master_backup_15Mar2024          like t_hi_activ_one_max_master;
+create table t_hi_activeone_mtype_code_backup_15Mar2024          like t_hi_activeone_mtype_code;
+create table t_hi_consolidated_master_backup_15Mar2024           like t_hi_consolidated_master;
+create table t_hi_consolidate_addon_rate_master_backup_15Mar2024 like t_hi_consolidate_addon_rate_master;
+create table t_hi_question_master_backup_15Mar2024               like t_hi_question_master;
+create table t_hi_onemax_chronic_disease_master_backup_15Mar2024 like t_hi_onemax_chronic_disease_master;
+create table t_hi_room_types_backup_15Mar2024                    like t_hi_room_types;
+
+
+insert into t_lob_master_backup_15Mar2024                       select * from t_lob_master;    
+insert into t_product_plan_master_backup_15Mar2024              select * from t_product_plan_master; 
+insert into t_hi_addons_ratemaster_backup_15Mar2024             select * from t_hi_addons_ratemaster;
+insert into t_hi_activ_one_max_master_backup_15Mar2024          select * from t_hi_activ_one_max_master;
+insert into t_hi_activeone_mtype_code_backup_15Mar2024          select * from t_hi_activeone_mtype_code;
+insert into t_hi_consolidated_master_backup_15Mar2024           select * from t_hi_consolidated_master;
+insert into t_hi_consolidate_addon_rate_master_backup_15Mar2024 select * from t_hi_consolidate_addon_rate_master;
+insert into t_hi_question_master_backup_15Mar2024               select * from t_hi_question_master;
+insert into t_hi_onemax_chronic_disease_master_backup_15Mar2024 select * from t_hi_onemax_chronic_disease_master;
+insert into t_hi_room_types_backup_15Mar2024                    select * from t_hi_room_types;
+
+select count(*) from t_lob_master;    
+select count(*) from t_product_plan_master; 
+select count(*) from t_hi_addons_ratemaster;
+select count(*) from t_hi_activ_one_max_master;
+select count(*) from t_hi_activeone_mtype_code;
+select count(*) from t_hi_consolidated_master;
+select count(*) from t_hi_consolidate_addon_rate_master;
+select count(*) from t_hi_question_master;
+select count(*) from t_hi_onemax_chronic_disease_master;
+select count(*) from t_hi_room_types;
+
+select count(*) from t_lob_master_backup_15Mar2024                      ;
+select count(*) from t_product_plan_master_backup_15Mar2024             ;
+select count(*) from t_hi_addons_ratemaster_backup_15Mar2024            ;
+select count(*) from t_hi_activ_one_max_master_backup_15Mar2024         ;
+select count(*) from t_hi_activeone_mtype_code_backup_15Mar2024         ;
+select count(*) from t_hi_consolidated_master_backup_15Mar2024          ;
+select count(*) from t_hi_consolidate_addon_rate_master_backup_15Mar2024;
+select count(*) from t_hi_question_master_backup_15Mar2024              ;
+select count(*) from t_hi_onemax_chronic_disease_master_backup_15Mar2024;
+select count(*) from t_hi_room_types_backup_15Mar2024                   ;
