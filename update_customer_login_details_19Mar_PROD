@@ -1,0 +1,4 @@
+UPDATE t_customer_login_details SET channel = 'Mobile' WHERE channel IS NULL;
+
+##Rollback###
+UPDATE t_customer_login_details SET channel = NULL WHERE channel = 'Mobile';
