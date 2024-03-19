@@ -1,0 +1,25 @@
+Update Column Script: -
+alter table t_product_plan_master add column lms_plan_display_name varchar(100);
+
+Update Data Script: -
+update t_product_plan_master set lms_plan_display_name='Activ Fit Plus' where plan_id=1;
+update t_product_plan_master set lms_plan_display_name='Activ Fit Preferred' where plan_id=2;
+update t_product_plan_master set lms_plan_display_name='Activ Health Platinum Enhancement' where plan_id=3;
+update t_product_plan_master set lms_plan_display_name='Activ Health Platinum Essential' where plan_id=4;
+update t_product_plan_master set lms_plan_display_name='Active Care -Senior Citizen Classic' where plan_id=5;
+update t_product_plan_master set lms_plan_display_name='Super Health Plus Top up' where plan_id=6;
+update t_product_plan_master set lms_plan_display_name='Activ Assure Diamond + Super Top Up Plan B' where plan_id=7;
+update t_product_plan_master set lms_plan_display_name='Activ Assure Diamond' where plan_id=8;
+update t_product_plan_master set lms_plan_display_name='Activ Secure-Critical Illness Plan1' where plan_id=9;
+update t_product_plan_master set lms_plan_display_name='Activ Secure-Critical Illness Plan2' where plan_id=10;
+update t_product_plan_master set lms_plan_display_name='Activ Secure-Critical Illness Plan3' where plan_id=11;
+update t_product_plan_master set lms_plan_display_name='Super Health Plus Top up Plan A' where plan_id=12;
+update t_product_plan_master set lms_plan_display_name='Super Health Plus Top up Plan B' where plan_id=13;
+update t_product_plan_master set lms_plan_display_name='ABSLI Digishield plan' where plan_id=14;
+update t_product_plan_master set lms_plan_display_name='Activ One Max' where plan_id=15;
+
+
+
+####Rollback#######
+####Revert Column Script: -
+#####alter table t_product_plan_master drop column lms_plan_display_name;
