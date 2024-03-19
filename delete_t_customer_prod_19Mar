@@ -1,0 +1,10 @@
+#####Backup#############
+create table t_customer_backup_19mar like t_customer;
+insert into t_customer_backup_19mar select * from t_customer where id = 32774;
+select * from t_customer_backup_19mar;
+
+###############Execute only if the row is available in t_customer_backup_19mar table:####################
+#DELETE FROM ABCDPRODDB.t_customer WHERE id = 32774;
+
+##rollback
+INSERT INTO ABCDPRODDB.t_customer VALUES ('32774', 'ABCD204292084', NULL, NULL, '', 'ac', '', '', '', '', '1', '1', NULL, NULL, '0', '1', NULL, '2024-03-11 15:37:39.931831', '', NULL);
