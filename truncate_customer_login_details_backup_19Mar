@@ -1,0 +1,6 @@
+##backup###
+CREATE TABLE ABCDPRODDB.t_customer_login_details_backup_19Mar AS SELECT * FROM ABCDPRODDB.t_customer_login_details;
+select count(*) from t_customer_login_details_backup_19Mar;
+
+##Run delete only after the backup and row count is matching###
+#Delete from t_customer_login_details;
