@@ -1,0 +1,10 @@
+####Set autocommit to OFF#####
+SET autocommit=0;
+select id,mpinexpiry,concat(date_add(current_timestamp(), interval 30 day), '.000000') as 'futureday' from t_pinmgt where id = 21724 and mpinexpiry <= current_date() limit 1;
+
+###Execute only if the above statement is completed.
+#update t_pinmgt set mpinexpiry = concat(date_add(current_timestamp(), interval 30 day), '.000000') where id = 21724 and  mpinexpiry <= current_date();
+#####update t_pinmgt set mpinexpiry = concat(date_add(current_timestamp(), interval 30 day), '.000000') where mpinexpiry <= current_date();
+
+####Rollback######
+rollback;
